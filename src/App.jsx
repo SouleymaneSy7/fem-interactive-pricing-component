@@ -37,12 +37,19 @@ function App() {
 }
 
 export const InputSlider = () => {
-  const [pageviews, setPageviews] = useState(0);
+  const [pageviews, setPageviews] = useState(1);
   const [isMonthly, setIsMonthly] = useState(true);
 
-  // const handleInputRange = (e) => {
-  //   setPageviews(e.target.value);
-  // };
+  console.log(pageviews);
+  console.log(pricingAmounts[pageviews].pageViews);
+
+  const handleInputRange = (e) => {
+    setPageviews(e.target.value);
+  };
+
+  const handleCheckbox = () => {
+    setIsMonthly(!isMonthly);
+  };
 
   return (
     <Fragment>
@@ -57,14 +64,12 @@ export const InputSlider = () => {
           step={1}
           min={1}
           max={5}
-          aria-label={pricingAmounts[pageviews].pageViews}
-          onInput={(e) => {
-            setPageviews(e.target.value);
-          }}
+          aria-label={`${pricingAmounts[pageviews].pageViews} pageviews`}
+          onInput={handleInputRange}
         />
 
         <p>
-          {pricingAmounts[pageviews][isMonthly ? "monthly" : "yearly"]} /{" "}
+          ${pricingAmounts[pageviews][isMonthly ? "monthly" : "yearly"]} /
           {isMonthly ? "Month" : "Year"}
         </p>
       </section>
@@ -76,9 +81,7 @@ export const InputSlider = () => {
           <input
             type="checkbox"
             id="card--checkbox"
-            onChange={() => {
-              setIsMonthly(!isMonthly);
-            }}
+            onChange={handleCheckbox}
           />
         </div>
 
