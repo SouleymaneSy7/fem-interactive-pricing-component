@@ -40,9 +40,6 @@ export const InputSlider = () => {
   const [pageviews, setPageviews] = useState(1);
   const [isMonthly, setIsMonthly] = useState(true);
 
-  console.log(pageviews);
-  console.log(pricingAmounts[pageviews].pageViews);
-
   const handleInputRange = (e) => {
     setPageviews(e.target.value);
   };
