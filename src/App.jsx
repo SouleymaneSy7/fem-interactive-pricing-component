@@ -1,11 +1,11 @@
 import { Header } from "./components/Header";
-import { InputSlider } from "./components/InputSlider";
+import { Main } from "./components/Main";
 
 function App() {
   return (
     <>
       <Header />
-      <InputSlider />
+      <Main />
     </>
   );
 }
