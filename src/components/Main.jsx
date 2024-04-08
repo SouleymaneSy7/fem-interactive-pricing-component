@@ -7,10 +7,15 @@ export const Main = () => {
   const btnProps = "Start my trial";
 
   return (
-    <main>
-      <InputSlider />
-      <MainList list={list} />
-      <MainBtn btnProps={btnProps} />
+    <main className="card">
+      <section className="card__top">
+        <InputSlider />
+      </section>
+
+      <section className="card__bottom">
+        <MainList list={list} />
+        <MainBtn btnProps={btnProps} />
+      </section>
     </main>
   );
 };

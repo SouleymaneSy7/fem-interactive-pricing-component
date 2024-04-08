@@ -33,8 +33,24 @@ export const InputSlider = () => {
   const [pageviews, setPageviews] = useState(1);
   const [isMonthly, setIsMonthly] = useState(true);
 
-  const handleInputRange = (e) => {
-    setPageviews(e.target.value);
+  const handleInputRange = (event) => {
+    setPageviews(event.target.value);
+
+    const element = event.target;
+    const sliderValue = element.value;
+    const sliderMin = element.min;
+    const sliderMax = element.max;
+
+    const getProgress = (value, min, max) => {
+      return ((value - min) / (max - min)) * 100;
+    };
+
+    const progress = getProgress(sliderValue, sliderMin, sliderMax);
+    let extraWidth = (100 - progress) / 20;
+
+    const rangeWidth = progress + extraWidth;
+
+    element.style.background = `linear-gradient(to right, var(--full-slider-bar-clr) ${rangeWidth}%, var(--empty-slider-bar-clr) ${rangeWidth}%)`;
   };
 
   const handleCheckbox = () => {
@@ -43,41 +59,55 @@ export const InputSlider = () => {
 
   return (
     <Fragment>
-      <section>
-        <h2>{pricingAmounts[pageviews].pageViews} Pageviews</h2>
+      <div className="card__input">
+        <h2 className="card__input__pageviews">
+          {pricingAmounts[pageviews].pageViews} Pageviews
+        </h2>
 
         <input
+          className="card__input--range"
           type="range"
-          name="range-slider"
-          id="range-slider"
           value={pageviews}
-          step={1}
           min={1}
           max={5}
-          aria-label={`${pricingAmounts[pageviews].pageViews} pageviews`}
           onInput={handleInputRange}
         />
 
-        <p>
-          ${pricingAmounts[pageviews][isMonthly ? "monthly" : "yearly"]} /
-          {isMonthly ? "Month" : "Year"}
+        <p className="card__input__pricing">
+          <span className="card__input__pricing-amount">
+            ${pricingAmounts[pageviews][isMonthly ? "monthly" : "yearly"]}.00{" "}
+          </span>
+
+          <span className="card__input__pricing-month">
+            / {isMonthly ? "month" : "year"}
+          </span>
         </p>
-      </section>
+      </div>
 
-      <div>
-        <p>Monthly Billing</p>
+      <div className="card__checkbox">
+        <label htmlFor="card--checkbox" className="card__checkbox__label">
+          <p>Monthly Billing</p>
 
-        <div className="card--checkbox">
-          <input
-            type="checkbox"
-            id="card--checkbox"
-            onChange={handleCheckbox}
-          />
-        </div>
+          <div className="card--checkbox__wrapper">
+            <input
+              type="checkbox"
+              id="card--checkbox"
+              onChange={handleCheckbox}
+            />
 
-        <p>
-          Yearly Billing <span>-25%</span>
-        </p>
+            {/* Fake Checkbox */}
+            <div className="card--checkbox__container">
+              <span className="card--checkbox--toggler"></span>
+            </div>
+          </div>
+
+          <p>
+            Yearly Billing
+            <span className="discount">
+              -25% <span className="discount-hidden">discount</span>{" "}
+            </span>
+          </p>
+        </label>
       </div>
     </Fragment>
   );

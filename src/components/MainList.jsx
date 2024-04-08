@@ -4,10 +4,10 @@ import checkmark from "../assets/images/icon-check.svg";
 export const MainList = ({ list }) => {
   const listItems = list.map((item) => (
     <li key={item}>
-      <img src={checkmark} />
-      <span>{item}</span>
+      <img src={checkmark} alt="Check mark icons" className="card__list__img" />
+      <span className="card__list__text">{item}</span>
     </li>
   ));
 
-  return <ul> {listItems} </ul>;
+  return <ul className="card__list">{listItems}</ul>;
 };
