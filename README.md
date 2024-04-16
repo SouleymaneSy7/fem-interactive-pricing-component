@@ -59,8 +59,8 @@ If the visitor switches the toggle to yearly billing, a 25% discount should be a
 
 ### Links
 
-- Demo URL: [Demo URL here](https://your-demo-url.com)
-- Solution URL: [Solution URL here](https://your-solution-url.com)
+- Demo URL: [Demo URL here](https://fem-interactive-pricing-component-eight.vercel.app/)
+- Solution URL: [Solution URL here](https://www.frontendmentor.io/solutions/interactive-pricing-component-reactjs-pnpm-vite-and-sass-glgcT_wjQ8)
 
 ### Built with
 
